@@ -60,7 +60,7 @@ class SteepTimer:
     def tick(self):
         print "tick."
         self._remaining = self._remaining - 1
-        self.lbl_remaining.set_text(str(self._remaining))
+        self.update_timer_display()
         
         if self._remaining <= 0:
             print "done."
