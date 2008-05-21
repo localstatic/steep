@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
+<!--Generated with glade3 3.4.5 on Sat May 17 18:15:06 2008 -->
+<glade-interface>
+  <widget class="GtkWindow" id="window1">
+    <child>
+      <widget class="GtkVBox" id="vbox1">
+        <property name="visible">True</property>
+        <child>
+          <widget class="GtkHBox" id="hbox1">
+            <property name="visible">True</property>
+            <child>
+              <widget class="GtkVBox" id="vbox2">
+                <property name="visible">True</property>
+                <child>
+                  <widget class="GtkLabel" id="lblTimeRemaining">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">0:00</property>
+                    <property name="justify">GTK_JUSTIFY_CENTER</property>
+                  </widget>
+                </child>
+                <child>
+                  <widget class="GtkProgressBar" id="progressbar1">
+                    <property name="visible">True</property>
+                    <property name="orientation">GTK_PROGRESS_RIGHT_TO_LEFT</property>
+                    <property name="text" translatable="yes"></property>
+                  </widget>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </widget>
+            </child>
+            <child>
+              <widget class="GtkVButtonBox" id="vbuttonbox1">
+                <property name="visible">True</property>
+                <child>
+                  <widget class="GtkButton" id="btnStart">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="label" translatable="yes">Start</property>
+                    <property name="response_id">0</property>
+                  </widget>
+                </child>
+                <child>
+                  <widget class="GtkButton" id="btnStop">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="label" translatable="yes">Stop</property>
+                    <property name="response_id">0</property>
+                  </widget>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkButton" id="btnReset">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="label" translatable="yes">Reset</property>
+                    <property name="response_id">0</property>
+                  </widget>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkVBox" id="vbox3">
+            <property name="visible">True</property>
+            <child>
+              <widget class="GtkVButtonBox" id="vbuttonbox2">
+                <property name="visible">True</property>
+                <child>
+                  <widget class="GtkRadioButton" id="rbBlackTea">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="label" translatable="yes">Black (5 minutes)</property>
+                    <property name="response_id">0</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                  </widget>
+                </child>
+                <child>
+                  <widget class="GtkRadioButton" id="rbGreenTea">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="label" translatable="yes">Green (3 minutes)</property>
+                    <property name="response_id">0</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                  </widget>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkRadioButton" id="rbHerbalTea">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="label" translatable="yes">Herbal (7 minutes)</property>
+                    <property name="response_id">0</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                  </widget>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkStatusbar" id="sbStatusBar">
+            <property name="visible">True</property>
+            <property name="spacing">2</property>
+          </widget>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+</glade-interface>
