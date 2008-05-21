@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat May 17 18:15:06 2008 -->
+<!--Generated with glade3 3.4.5 on Tue May 20 23:12:18 2008 -->
 <glade-interface>
-  <widget class="GtkWindow" id="window1">
+  <widget class="GtkWindow" id="wnd_main">
+    <signal name="destroy" handler="on_wnd_main_destroy"/>
     <child>
       <widget class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
@@ -13,14 +14,14 @@
               <widget class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkLabel" id="lblTimeRemaining">
+                  <widget class="GtkLabel" id="lbl_remaining">
                     <property name="visible">True</property>
                     <property name="label" translatable="yes">0:00</property>
                     <property name="justify">GTK_JUSTIFY_CENTER</property>
                   </widget>
                 </child>
                 <child>
-                  <widget class="GtkProgressBar" id="progressbar1">
+                  <widget class="GtkProgressBar" id="pb_progressbar">
                     <property name="visible">True</property>
                     <property name="orientation">GTK_PROGRESS_RIGHT_TO_LEFT</property>
                     <property name="text" translatable="yes"></property>
@@ -36,33 +37,36 @@
               <widget class="GtkVButtonBox" id="vbuttonbox1">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkButton" id="btnStart">
+                  <widget class="GtkButton" id="btn_start">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="label" translatable="yes">Start</property>
                     <property name="response_id">0</property>
+                    <signal name="clicked" handler="on_btn_start_clicked"/>
                   </widget>
                 </child>
                 <child>
-                  <widget class="GtkButton" id="btnStop">
+                  <widget class="GtkButton" id="btn_stop">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="label" translatable="yes">Stop</property>
                     <property name="response_id">0</property>
+                    <signal name="clicked" handler="on_btn_stop_clicked"/>
                   </widget>
                   <packing>
                     <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkButton" id="btnReset">
+                  <widget class="GtkButton" id="btn_reset">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="label" translatable="yes">Reset</property>
                     <property name="response_id">0</property>
+                    <signal name="clicked" handler="on_btn_reset_clicked"/>
                   </widget>
                   <packing>
                     <property name="position">2</property>
@@ -87,7 +91,7 @@
               <widget class="GtkVButtonBox" id="vbuttonbox2">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkRadioButton" id="rbBlackTea">
+                  <widget class="GtkRadioButton" id="rb_blacktea">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="label" translatable="yes">Black (5 minutes)</property>
@@ -97,26 +101,26 @@
                   </widget>
                 </child>
                 <child>
-                  <widget class="GtkRadioButton" id="rbGreenTea">
+                  <widget class="GtkRadioButton" id="rb_greentea">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="label" translatable="yes">Green (3 minutes)</property>
                     <property name="response_id">0</property>
-                    <property name="active">True</property>
                     <property name="draw_indicator">True</property>
+                    <property name="group">rb_blacktea</property>
                   </widget>
                   <packing>
                     <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkRadioButton" id="rbHerbalTea">
+                  <widget class="GtkRadioButton" id="rb_herbaltea">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="label" translatable="yes">Herbal (7 minutes)</property>
                     <property name="response_id">0</property>
-                    <property name="active">True</property>
                     <property name="draw_indicator">True</property>
+                    <property name="group">rb_blacktea</property>
                   </widget>
                   <packing>
                     <property name="position">2</property>
@@ -130,7 +134,7 @@
           </packing>
         </child>
         <child>
-          <widget class="GtkStatusbar" id="sbStatusBar">
+          <widget class="GtkStatusbar" id="sb_statusbar">
             <property name="visible">True</property>
             <property name="spacing">2</property>
           </widget>
