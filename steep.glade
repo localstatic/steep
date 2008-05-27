@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Tue May 20 23:12:18 2008 -->
+<!--Generated with glade3 3.4.5 on Mon May 26 21:51:14 2008 -->
 <glade-interface>
   <widget class="GtkWindow" id="wnd_main">
+    <property name="title" translatable="yes">Steep</property>
     <signal name="destroy" handler="on_wnd_main_destroy"/>
     <child>
       <widget class="GtkVBox" id="vbox1">
@@ -23,7 +24,6 @@
                 <child>
                   <widget class="GtkProgressBar" id="pb_progressbar">
                     <property name="visible">True</property>
-                    <property name="orientation">GTK_PROGRESS_RIGHT_TO_LEFT</property>
                     <property name="text" translatable="yes"></property>
                   </widget>
                   <packing>
@@ -98,6 +98,7 @@
                     <property name="response_id">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
+                    <signal name="toggled" handler="on_tea_selected"/>
                   </widget>
                 </child>
                 <child>
@@ -108,6 +109,7 @@
                     <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">rb_blacktea</property>
+                    <signal name="toggled" handler="on_tea_selected"/>
                   </widget>
                   <packing>
                     <property name="position">1</property>
@@ -121,6 +123,7 @@
                     <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">rb_blacktea</property>
+                    <signal name="toggled" handler="on_tea_selected"/>
                   </widget>
                   <packing>
                     <property name="position">2</property>

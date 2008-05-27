@@ -17,7 +17,7 @@ import timer
 class SteepTimer:
     def __init__(self):
         gobject.threads_init()
-        self._ticks = 5
+        self._ticks = 0
         self._remaining = 0
         self._timer = timer.Timer(1, self.tick)
 
@@ -34,11 +34,12 @@ class SteepTimer:
         self.wnd_main.show()
 
         #
-        
+
         self.on_btn_reset_clicked()
         
     def on_btn_start_clicked(self, widget = None, data = None):
-        self._remaining = self._ticks
+        self.init_timer(self._ticks)
+
         print "Starting."
         self.update_timer_display()
         self._timer.start()
@@ -54,18 +55,17 @@ class SteepTimer:
         self._remaining = self._ticks
         self.update_timer_display()
         
-    def update_timer_display(self):
-        self.lbl_remaining.set_text(str(self._remaining))
+    def on_tea_selected(self, widget, data = None):
+        if self.rb_blacktea.get_active():
+            seconds = 5 * 60
+        elif self.rb_greentea.get_active():
+            seconds = 3 * 60
+        elif self.rb_herbaltea.get_active():
+            seconds = 7 * 60
         
-    def tick(self):
-        print "tick."
-        self._remaining = self._remaining - 1
-        self.update_timer_display()
-        
-        if self._remaining <= 0:
-            print "done."
-            self.on_btn_stop_clicked()
-        
+        self.on_btn_stop_clicked()
+        self.init_timer(seconds)
+    
     def on_wnd_main_delete_event(self, widget, event, data=None):
         print "delete event"
         return False
@@ -73,6 +73,29 @@ class SteepTimer:
     def on_wnd_main_destroy(self, widget, data=None):
         gtk.main_quit()
 
+    def init_timer(self, seconds):
+        self._ticks = seconds
+        self._remaining = self._ticks
+        
+        self.pb_progressbar.set_fraction(0)
+        self.update_timer_display()
+        
+    def update_timer_display(self):
+        formatted_time_string = '%d:%02d' % (self._remaining / 60, self._remaining % 60)
+        self.lbl_remaining.set_text(formatted_time_string)
+        
+    def tick(self):
+        print "tick."
+        self._remaining = self._remaining - 1
+        self.update_timer_display()
+        self.pb_progressbar.set_fraction(1 - float(self._remaining) / self._ticks)
+        self.pb_progressbar.set_text(self.lbl_remaining.get_text())
+        if self._remaining <= 0:
+            print "done."
+            #msgdlg = gtk.MessageDialog(self.wnd_main, gtk.DIALOG_MODAL, gtk.MESSAGE_INFO, gtk.BUTTONS_OK, 'Tea is ready.')
+            #msgdlg.run()
+            self.on_btn_stop_clicked()
+        
     def main(self):
         gtk.main()
 
