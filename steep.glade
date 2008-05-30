@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Mon May 26 21:51:14 2008 -->
+<!--Generated with glade3 3.4.5 on Mon May 26 22:36:52 2008 -->
 <glade-interface>
   <widget class="GtkWindow" id="wnd_main">
     <property name="title" translatable="yes">Steep</property>
@@ -12,25 +12,10 @@
           <widget class="GtkHBox" id="hbox1">
             <property name="visible">True</property>
             <child>
-              <widget class="GtkVBox" id="vbox2">
+              <widget class="GtkProgressBar" id="pb_progressbar">
                 <property name="visible">True</property>
-                <child>
-                  <widget class="GtkLabel" id="lbl_remaining">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">0:00</property>
-                    <property name="justify">GTK_JUSTIFY_CENTER</property>
-                  </widget>
-                </child>
-                <child>
-                  <widget class="GtkProgressBar" id="pb_progressbar">
-                    <property name="visible">True</property>
-                    <property name="text" translatable="yes"></property>
-                  </widget>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
+                <property name="orientation">GTK_PROGRESS_RIGHT_TO_LEFT</property>
+                <property name="text" translatable="yes"></property>
               </widget>
             </child>
             <child>
@@ -57,19 +42,6 @@
                   </widget>
                   <packing>
                     <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkButton" id="btn_reset">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="label" translatable="yes">Reset</property>
-                    <property name="response_id">0</property>
-                    <signal name="clicked" handler="on_btn_reset_clicked"/>
-                  </widget>
-                  <packing>
-                    <property name="position">2</property>
                   </packing>
                 </child>
               </widget>
