@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Mon May 26 22:36:52 2008 -->
+<!--Generated with glade3 3.4.5 on Sat May 31 21:09:55 2008 -->
 <glade-interface>
   <widget class="GtkWindow" id="wnd_main">
     <property name="title" translatable="yes">Steep</property>
@@ -14,7 +14,6 @@
             <child>
               <widget class="GtkProgressBar" id="pb_progressbar">
                 <property name="visible">True</property>
-                <property name="orientation">GTK_PROGRESS_RIGHT_TO_LEFT</property>
                 <property name="text" translatable="yes"></property>
               </widget>
             </child>
@@ -22,23 +21,23 @@
               <widget class="GtkVButtonBox" id="vbuttonbox1">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkButton" id="btn_start">
+                  <widget class="GtkButton" id="btn_startstop">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="label" translatable="yes">Start</property>
                     <property name="response_id">0</property>
-                    <signal name="clicked" handler="on_btn_start_clicked"/>
+                    <signal name="clicked" handler="on_btn_startstop_clicked"/>
                   </widget>
                 </child>
                 <child>
-                  <widget class="GtkButton" id="btn_stop">
+                  <widget class="GtkButton" id="btn_exit">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="label" translatable="yes">Stop</property>
+                    <property name="label" translatable="yes">Exit</property>
                     <property name="response_id">0</property>
-                    <signal name="clicked" handler="on_btn_stop_clicked"/>
+                    <signal name="clicked" handler="on_btn_exit_clicked"/>
                   </widget>
                   <packing>
                     <property name="position">1</property>
@@ -102,6 +101,9 @@
                   </packing>
                 </child>
               </widget>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
             </child>
           </widget>
           <packing>

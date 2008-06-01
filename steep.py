@@ -40,28 +40,17 @@ class SteepMain:
         self.on_tea_selected()
         self.reset_timer()
         
-    def on_btn_start_clicked(self, widget = None, data = None):
-        self.on_tea_selected()
-        logging.debug("Starting.");
-        self.update_timer_display()
-        self._timer.start()
-
-    def on_btn_stop_clicked(self, widget = None, data = None):
-        if not self._timer.is_running():
-            return
+    def on_btn_startstop_clicked(self, widget = None, data = None):
+        if self._timer.is_running():
+            self.stop_timer()
+        else:
+            self.start_timer()
         
-        logging.debug("Stopping.")
-        self._timer.stop()
-        self.update_timer_display()
-
-    def reset_timer(self):
-        logging.debug("Resetting.")
-        self.on_btn_stop_clicked()
-        self._remaining = self._ticks
-        self.update_timer_display()
+    def on_btn_exit_clicked(self, widget = None, data = None):
+        gtk.main_quit()
         
     def on_tea_selected(self, widget = None, data = None):
-        self.on_btn_stop_clicked()
+        self.stop_timer()
 
         if self.rb_blacktea.get_active():
             seconds = 5 * 60
@@ -84,12 +73,36 @@ class SteepMain:
         self.pb_progressbar.set_fraction(0)
         self.update_timer_display()
         
+    def start_timer(self):
+        if 0 == self._remaining:
+            self.on_tea_selected()
+            
+        logging.debug("Starting.");
+        self.update_timer_display()
+        self.btn_startstop.set_label('Stop')
+        self._timer.start()
+
+    def stop_timer(self):
+        if not self._timer.is_running():
+            return
+        
+        logging.debug("Stopping.")
+        self._timer.stop()
+        self.update_timer_display()
+        self.btn_startstop.set_label('Start')
+
+    def reset_timer(self):
+        logging.debug("Resetting.")
+        self.stop_timer()
+        self._remaining = self._ticks
+        self.update_timer_display()
+        
     def update_timer_display(self):
         formatted_time_string = '%d:%02d' % (self._remaining / 60, self._remaining % 60)
         self.pb_progressbar.set_text(formatted_time_string)
         
         if 0 != self._ticks:
-            self.pb_progressbar.set_fraction(float(self._remaining) / self._ticks)
+            self.pb_progressbar.set_fraction(1 - float(self._remaining) / self._ticks)
 
     def tick(self):
         logging.debug("tick (" + str(self._remaining) + ").")
@@ -98,7 +111,7 @@ class SteepMain:
 
         if self._remaining <= 0:
             logging.debug("done.")
-            self.on_btn_stop_clicked()
+            self.stop_timer()
             gobject.idle_add(self.timer_elapsed)
             
     def timer_elapsed(self):
