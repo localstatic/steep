@@ -25,7 +25,7 @@ class SteepMain:
 
         # set up UI via Glade
         
-        wtree = gtk.glade.XML('steep.glade')
+        wtree = gtk.glade.XML('steep.glade', 'wnd_main')
         wtree.signal_autoconnect(self)
         
         for w in wtree.get_widget_prefix(''):
