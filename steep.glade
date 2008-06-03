@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat May 31 21:09:55 2008 -->
+<!--Generated with glade3 3.4.5 on Tue Jun  3 00:17:36 2008 -->
 <glade-interface>
   <widget class="GtkWindow" id="wnd_main">
     <property name="title" translatable="yes">Steep</property>
     <signal name="destroy" handler="on_wnd_main_destroy"/>
     <child>
-      <widget class="GtkVBox" id="vbox1">
+      <widget class="GtkVBox" id="vbox_main">
         <property name="visible">True</property>
         <child>
-          <widget class="GtkHBox" id="hbox1">
+          <widget class="GtkHBox" id="hbox_timer">
             <property name="visible">True</property>
             <child>
               <widget class="GtkProgressBar" id="pb_progressbar">
@@ -18,7 +18,7 @@
               </widget>
             </child>
             <child>
-              <widget class="GtkVButtonBox" id="vbuttonbox1">
+              <widget class="GtkVButtonBox" id="vbb_timer_buttons">
                 <property name="visible">True</property>
                 <child>
                   <widget class="GtkButton" id="btn_startstop">
@@ -56,16 +56,16 @@
           </packing>
         </child>
         <child>
-          <widget class="GtkVBox" id="vbox3">
+          <widget class="GtkVBox" id="vbox_timers_ui">
             <property name="visible">True</property>
             <child>
-              <widget class="GtkVButtonBox" id="vbuttonbox2">
+              <widget class="GtkVButtonBox" id="vbb_timers_radio">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkRadioButton" id="rb_blacktea">
+                  <widget class="GtkRadioButton" id="rb_greentea">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="label" translatable="yes">Black (5 minutes)</property>
+                    <property name="label" translatable="yes">Green (3 minutes)</property>
                     <property name="response_id">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
@@ -73,13 +73,13 @@
                   </widget>
                 </child>
                 <child>
-                  <widget class="GtkRadioButton" id="rb_greentea">
+                  <widget class="GtkRadioButton" id="rb_blacktea">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="label" translatable="yes">Green (3 minutes)</property>
+                    <property name="label" translatable="yes">Black (5 minutes)</property>
                     <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
-                    <property name="group">rb_blacktea</property>
+                    <property name="group">rb_greentea</property>
                     <signal name="toggled" handler="on_tea_selected"/>
                   </widget>
                   <packing>
@@ -93,7 +93,7 @@
                     <property name="label" translatable="yes">Herbal (7 minutes)</property>
                     <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
-                    <property name="group">rb_blacktea</property>
+                    <property name="group">rb_greentea</property>
                     <signal name="toggled" handler="on_tea_selected"/>
                   </widget>
                   <packing>
