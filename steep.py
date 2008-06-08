@@ -19,7 +19,7 @@ class SteepMain:
     def __init__(self):
         logging.basicConfig(format="%(asctime)s %(levelname)s %(message)s", level=logging.DEBUG)
         gobject.threads_init()
-        self._ticks = 0
+        self._seconds = 0
         self._remaining = 0
         self._timer = timer.Timer(1, self.tick)
 
@@ -68,8 +68,8 @@ class SteepMain:
         gtk.main_quit()
 
     def init_timer(self, seconds):
-        self._ticks = seconds
-        self._remaining = self._ticks
+        self._seconds = seconds
+        self._remaining = self._seconds
         self.pb_progressbar.set_fraction(0)
         self.update_timer_display()
         
@@ -78,6 +78,7 @@ class SteepMain:
             self.on_tea_selected()
             
         logging.debug("Starting.");
+        self._started_at = time.time()
         self.update_timer_display()
         self.btn_startstop.set_label('Stop')
         self._timer.start()
@@ -94,19 +95,26 @@ class SteepMain:
     def reset_timer(self):
         logging.debug("Resetting.")
         self.stop_timer()
-        self._remaining = self._ticks
+        self._remaining = self._seconds
         self.update_timer_display()
         
     def update_timer_display(self):
-        formatted_time_string = '%d:%02d' % (self._remaining / 60, self._remaining % 60)
-        self.pb_progressbar.set_text(formatted_time_string)
+        remaining = int(self._remaining)
+        elapsed_seconds = self._seconds - remaining
+        total_time_string = '%d:%02d' % (elapsed_seconds / 60, elapsed_seconds % 60)
+        remaining_time_string = '%d:%02d' % (remaining / 60, remaining % 60)
+        self.pb_progressbar.set_text(total_time_string + ' / -' + remaining_time_string)
         
-        if 0 != self._ticks:
-            self.pb_progressbar.set_fraction(1 - float(self._remaining) / self._ticks)
+        if 0 != self._seconds and 0 < self._remaining:
+            fraction = 1 - float(self._remaining) / self._seconds
+        else:
+            fraction = 0
+
+        self.pb_progressbar.set_fraction(fraction)
 
     def tick(self):
         logging.debug("tick (" + str(self._remaining) + ").")
-        self._remaining = self._remaining - 1
+        self._remaining = self._seconds - (time.time() - self._started_at) 
         self.update_timer_display()
 
         if self._remaining <= 0:
@@ -118,7 +126,6 @@ class SteepMain:
         dlg = gtk.MessageDialog(self.wnd_main, gtk.DIALOG_MODAL, gtk.MESSAGE_INFO, gtk.BUTTONS_OK, 'Tea is ready.')
         dlg.run()
         dlg.destroy()
-        
         
     def main(self):
         gtk.main()
