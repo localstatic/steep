@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/mt/apps/steep
+python steep.py
