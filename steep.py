@@ -3,15 +3,10 @@
 import gtk
 import gtk.glade
 import gobject
-
-#
-
 import logging
 import string
 import thread
 import time
-
-#
 
 import timer
 
