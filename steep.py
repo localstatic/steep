@@ -10,7 +10,7 @@ import time
 
 import timer
 
-class SteepMain:
+class Steep:
     def __init__(self):
         logging.basicConfig(format="%(asctime)s %(levelname)s %(message)s", level=logging.DEBUG)
         gobject.threads_init()
@@ -128,7 +128,7 @@ class SteepMain:
         gtk.main()
 
 if __name__ == "__main__":
-    obj = SteepMain()
+    obj = Steep()
     gtk.main()
 
 
