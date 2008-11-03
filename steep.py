@@ -45,13 +45,13 @@ class SteepMain:
             self.stop_timer()
         else:
             self.start_timer()
-        
+            
     def on_btn_exit_clicked(self, widget = None, data = None):
         gtk.main_quit()
         
     def on_tea_selected(self, widget = None, data = None):
         self.stop_timer()
-
+        
         if self.rb_blacktea.get_active():
             seconds = 5 * 60
         elif self.rb_greentea.get_active():
@@ -81,6 +81,7 @@ class SteepMain:
         self._started_at = time.time()
         self.update_timer_display()
         self.btn_startstop.set_label('Stop')
+        self.vbox_timers_ui.set_sensitive(False)
         self._timer.start()
 
     def stop_timer(self):
@@ -89,6 +90,7 @@ class SteepMain:
         
         logging.debug("Stopping.")
         self._timer.stop()
+        self.vbox_timers_ui.set_sensitive(True)
         self.update_timer_display()
         self.btn_startstop.set_label('Start')
 
