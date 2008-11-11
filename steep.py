@@ -13,11 +13,11 @@ import timer
 
 class Steep:
     def __init__(self):
-        logging.basicConfig(format="%(asctime)s %(levelname)s %(message)s", level=logging.DEBUG)
+        logging.basicConfig(format="%(asctime)s %(levelname)s %(message)s", level=logging.debug)
 
         # Read config & do any relevant setup
         self._config_values = self.read_config()
-        logging.debug(self._config_values)
+        #logging.debug(self._config_values)
         
         #
         gobject.threads_init()
@@ -99,8 +99,6 @@ class Steep:
         self.stop_timer()
         self.init_timer(seconds)
 
-        logging.debug('timer row activated: ' + str(seconds) + ' seconds')
-        
         self.start_timer()
 
     def on_tv_timers_changed(self, treeview = None):
@@ -117,8 +115,6 @@ class Steep:
         self.stop_timer()
         self.init_timer(seconds)
         
-        logging.debug('timer selection changed: ' + str(seconds) + ' seconds')
-    
     def on_wnd_main_delete_event(self, widget, event, data=None):
         return False
 
@@ -135,7 +131,7 @@ class Steep:
         if 0 == self._remaining:
             self.on_tv_timers_changed()
             
-        logging.debug("Starting.");
+        #logging.debug("Starting.");
         self._started_at = time.time()
         self.update_timer_display()
         self.btn_startstop.set_label('Stop')
@@ -146,14 +142,14 @@ class Steep:
         if not self._timer.is_running():
             return
         
-        logging.debug("Stopping.")
+        #logging.debug("Stopping.")
         self._timer.stop()
         self.vbox_timers_ui.set_sensitive(True)
         self.update_timer_display()
         self.btn_startstop.set_label('Start')
 
     def reset_timer(self):
-        logging.debug("Resetting.")
+        #logging.debug("Resetting.")
         self.stop_timer()
         self._remaining = self._seconds
         self.update_timer_display()
@@ -176,12 +172,12 @@ class Steep:
         self.pb_progressbar.set_fraction(fraction)
 
     def tick(self):
-        logging.debug("tick (" + str(self._remaining) + ").")
+        #logging.debug("tick (" + str(self._remaining) + ").")
         self._remaining = self._seconds - (time.time() - self._started_at) 
         self.update_timer_display()
 
         if self._remaining <= 0:
-            logging.debug("done.")
+            #logging.debug("done.")
             self.stop_timer()
             gobject.idle_add(self.timer_elapsed)
             
