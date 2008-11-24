@@ -8,6 +8,7 @@ import string
 import thread
 import time
 import ConfigParser
+import os.path
 
 import timer
 
@@ -18,7 +19,7 @@ class Steep:
         # Read config & do any relevant setup
         self._config_values = self.read_config()
         #logging.debug(self._config_values)
-        
+
         #
         gobject.threads_init()
         self._seconds = 0
@@ -34,6 +35,16 @@ class Steep:
             assert not hasattr(self, name)
             setattr(self, name, w)
       
+        #
+
+        if 'timers' not in self._config_values.keys() or 0 == len(self._config_values['timers']):
+            dlg = gtk.MessageDialog(self.wnd_main, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK, 'No timers defined.')
+            dlg.run()
+            dlg.destroy()
+            
+            import sys
+            sys.exit(1)
+
         # set up tree view with timers from the config file
         cell = gtk.CellRendererText()
         col = gtk.TreeViewColumn('Name', cell)
@@ -62,10 +73,18 @@ class Steep:
         cell.set_property('text', self.get_seconds_time_display_string(model.get_value(iter, 1)))
     
     def read_config(self):
+        
+        if not os.path.exists('steep.conf'):
+            return None
+        
         config = ConfigParser.ConfigParser()
         config.read('steep.conf')
 
-        config_values = dict(config.items('options'))
+        if config.has_section('options'):
+            config_values = dict(config.items('options'))
+        else:
+            config_values = {}
+            
         sections = config.sections()
         
         if len(sections) > 0:
@@ -182,7 +201,16 @@ class Steep:
             gobject.idle_add(self.timer_elapsed)
             
     def timer_elapsed(self):
-        finished_message = self._config_values['finished_message'] or 'Done.'
+        if 'finished_sound' in self._config_values.keys():
+            finished_sound = self._config_values['finished_sound']
+            if os.path.exists(finished_sound):
+                self.play_sound(finished_sound)
+        
+        if 'finished_message' in self._config_values.keys():
+            finished_message = self._config_values['finished_message'] or 'Done'
+        else:
+            finished_message = 'Done'
+
         dlg = gtk.MessageDialog(self.wnd_main, gtk.DIALOG_MODAL, gtk.MESSAGE_INFO, gtk.BUTTONS_OK, finished_message)
         dlg.run()
         dlg.destroy()
@@ -190,6 +218,21 @@ class Steep:
     def main(self):
         gtk.main()
 
+    def play_sound(self, path):
+        try:
+            # Gnome
+            import gnome
+            gnome.sound_init('localhost')
+            gnome.sound_play(path)
+        except ImportError:
+            try:
+                # Windows
+                import winsound
+                winsound.PlaySound(path, winsound.SND_FILENAME)
+            except ImportError:
+                # Unable to play sound
+                logging.error('Unable to play sound. No player found.')
+                
 if __name__ == "__main__":
     obj = Steep()
     gtk.main()
