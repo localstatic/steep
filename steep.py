@@ -215,9 +215,6 @@ class Steep:
         dlg.run()
         dlg.destroy()
         
-    def main(self):
-        gtk.main()
-
     def play_sound(self, path):
         try:
             # Gnome
