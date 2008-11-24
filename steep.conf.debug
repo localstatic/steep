@@ -1,6 +1,6 @@
 [options]
 finished_message: Your tea is ready.
-#finished_sound: /path/to/sound/file.wav
+finished_sound: /home/mt/tmp/spock.wav
 
 [timer.green]
 label: Green Tea
@@ -13,3 +13,7 @@ duration: 300
 [timer.herbal]
 label: Herbal Tea
 duration: 420
+
+[timer.debug]
+label: Debug
+duration: 2
