@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
+<!--Generated with glade3 3.4.5 on Tue Nov 11 00:39:17 2008 -->
+<glade-interface>
+  <widget class="GtkWindow" id="wnd_main">
+    <property name="title" translatable="yes">Steep</property>
+    <property name="window_position">GTK_WIN_POS_CENTER</property>
+    <signal name="destroy" handler="on_wnd_main_destroy"/>
+    <child>
+      <widget class="GtkVBox" id="vbox_main">
+        <property name="visible">True</property>
+        <child>
+          <widget class="GtkHBox" id="hbox_timer">
+            <property name="visible">True</property>
+            <child>
+              <widget class="GtkProgressBar" id="pb_progressbar">
+                <property name="visible">True</property>
+              </widget>
+            </child>
+            <child>
+              <widget class="GtkVButtonBox" id="vbb_timer_buttons">
+                <property name="visible">True</property>
+                <child>
+                  <widget class="GtkButton" id="btn_startstop">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="label" translatable="yes">Start</property>
+                    <property name="response_id">0</property>
+                    <signal name="clicked" handler="on_btn_startstop_clicked"/>
+                  </widget>
+                </child>
+                <child>
+                  <widget class="GtkButton" id="btn_exit">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="label" translatable="yes">Exit</property>
+                    <property name="response_id">0</property>
+                    <signal name="clicked" handler="on_btn_exit_clicked"/>
+                  </widget>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkVBox" id="vbox_timers_ui">
+            <property name="visible">True</property>
+            <child>
+              <widget class="GtkTreeView" id="tv_timers">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <signal name="row_activated" handler="on_tv_row_activated"/>
+                <signal name="cursor_changed" handler="on_tv_timers_changed"/>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkStatusbar" id="sb_statusbar">
+            <property name="visible">True</property>
+            <property name="spacing">2</property>
+          </widget>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+</glade-interface>
