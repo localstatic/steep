@@ -1,3 +1,6 @@
+# timer.py
+# Morgan Terry
+# November 1, 2008
 
 import thread
 import time

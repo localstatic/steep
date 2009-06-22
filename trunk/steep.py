@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# steep.py
+# Morgan Terry
+# November 1, 2008
 
 import gtk
 import gtk.glade
