@@ -1,3 +1,0 @@
-#!/bin/bash
-cd /home/mt/apps/steep # change this to reflect the directory you extracted the source to
-python steep.py
